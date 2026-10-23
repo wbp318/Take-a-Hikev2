@@ -69,7 +69,8 @@ python gis/find_trails.py "Caddo Parish" --no-tracks     # drop farm/levee track
 ```
 
 Output is `gis/data/<place>.geojson` (drag into QGIS) plus a printed table. To add it to the
-TrailFeathers project with styling (named ways red, paths orange, tracks grey, sites green) and
+TrailFeathers project as separate layers (named ways red with along-line labels, a `trail_names`
+point layer that keeps every name visible at any scale, paths orange, tracks grey, sites green) and
 make it the default view:
 
 ```
