@@ -1,0 +1,11 @@
+[general]
+name=TrailFeathers
+qgisMinimumVersion=3.34
+description=Load TrailFeathers trails from the running app and fetch nearby eBird sightings.
+version=0.1
+author=TrailFeathers
+email=noreply@example.com
+about=Companion plugin for the Take-a-Hike / TrailFeathers web app. Pulls trails from the Express server's /api/trails/geojson endpoint and, for a selected trail, pulls recent eBird observations within 10 km.
+tracker=https://github.com/wbp318/Take-a-Hikev2/issues
+repository=https://github.com/wbp318/Take-a-Hikev2
+experimental=True

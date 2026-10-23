@@ -1,4 +1,5 @@
 // Import Dependencies
+require('dotenv').config();
 const axios = require('axios');
 const sequelize = require('sequelize');
 const { query } = require('express');
@@ -17,6 +18,7 @@ const session = require('express-session');
 require('./middleware/auth.js');
 const { cloudinary } = require('./utils/coudinary');
 const { Users } = require('./database/models/users');
+const { Trails } = require('./database/models/trails.js');
 
 // // Import DB
 // const { db } = require('./database/index.js')
@@ -91,8 +93,7 @@ app.get("/api/trailslist", (req, res) => {
       {
         headers: {
           "X-RapidAPI-Host": "trailapi-trailapi.p.rapidapi.com",
-          "X-RapidAPI-Key":
-            "a27adeb778msh22d13ed248d5359p1d95b8jsnb7239b396c5c",
+          "X-RapidAPI-Key": process.env.RAPIDAPI_KEY,
         },
       }
     )
@@ -103,6 +104,35 @@ app.get("/api/trailslist", (req, res) => {
     .catch((err) => {
       console.error("ERROR: ", err);
       res.sendStatus(404);
+    });
+});
+
+// GET all stored trails as a GeoJSON FeatureCollection (consumed by QGIS; see gis/README.md)
+app.get("/api/trails/geojson", (req, res) => {
+  Trails.findAll({ raw: true })
+    .then((rows) => {
+      const features = rows
+        .map((t) => {
+          const lat = parseFloat(t.lat);
+          const lon = parseFloat(t.lon);
+          if (Number.isNaN(lat) || Number.isNaN(lon)) return null;
+          return {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [lon, lat] },
+            properties: {
+              id: t.id, name: t.name, length_mi: parseFloat(t.length) || null,
+              difficulty: t.difficulty || "Unknown", rating: t.rating, city: t.city,
+              region: t.region, country: t.country, features: t.features,
+              url: t.url, thumbnail: t.thumbnail, description: t.description,
+            },
+          };
+        })
+        .filter(Boolean);
+      res.json({ type: "FeatureCollection", features });
+    })
+    .catch((err) => {
+      console.error("ERROR: ", err);
+      res.sendStatus(500);
     });
 });
 
