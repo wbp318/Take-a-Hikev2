@@ -42,7 +42,35 @@ set EBIRD_API_KEY=your_token      # https://ebird.org/api/keygen
 C:\OSGeo4W\bin\python-qgis-ltr.bat gis\pyqgis\build_trail_layers.py
 ```
 
-## 3. QGIS plugin
+## 3. Enrich trails (OSM linework, elevation, bird score)
+
+```
+C:\OSGeo4Win\python-qgis-ltr.bat gis\pyqgis\enrich_trails.py
+```
+
+Adds two layers to the GeoPackage and project, and writes `gis/data/trail_enrichment.json`:
+
+| layer / field       | source                                                        |
+|---------------------|---------------------------------------------------------------|
+| trail_lines         | OSM path/footway/track/cycleway ways within 3 km of each trailhead (Overpass) |
+| elevation_samples   | points every ~100 m along the longest segment, elevation from Open-Meteo (SRTM/Copernicus DEM) |
+| elev_gain_m etc.    | computed from the samples                                     |
+| bird_score          | 0-100, scaled from all-time species count of the richest eBird hotspot within 10 km (needs `EBIRD_API_KEY`) |
+
+The Express server exposes the JSON at `GET /api/trails/enrichment`, and the trail profile page shows it.
+
+## 4. Find trails in a parish / county
+
+No QGIS needed. Geocodes the place with Nominatim and pulls trails, parks, nature reserves and camp/picnic sites from OSM:
+
+```
+python gis/find_trails.py "East Carroll Parish" --state Louisiana
+python gis/find_trails.py "Caddo Parish" --no-tracks     # drop farm/levee tracks
+```
+
+Output is `gis/data/<place>.geojson` (drag into QGIS) plus a printed table. Note the search uses the geocoded bounding box, so results near parish borders can spill into neighbours.
+
+## 5. QGIS plugin
 
 Copy (or symlink) `gis/qgis_plugin/trailfeathers` into your QGIS plugin folder, e.g.
 
@@ -62,7 +90,7 @@ then enable it in Plugins > Manage and Install Plugins. It adds three actions:
 
 ## Ideas for next steps
 
-- Replace point trailheads with real trail linework (OpenStreetMap `highway=path` via QuickOSM, or the app's TrailAPI polylines).
-- Sample a DEM (e.g. USGS 3DEP) along trails for elevation profiles and store `elevation_gain` on each trail.
-- Spatial join eBird hotspots to trail buffers to rank trails by bird diversity, then expose that score through the API to the React front end.
-- Run the builder on a schedule and serve the GeoPackage tiles back to the web app with `tipg` or `pg_tileserv`.
+- Store enrichment in the `trails` table instead of a JSON file so it survives re-seeding.
+- Swap Open-Meteo for USGS 3DEP (10 m) via the EPQS API for better Louisiana relief.
+- Run the builder on a schedule and serve the GeoPackage as vector tiles with `tipg` or `pg_tileserv`.
+- Render `trail_lines` in the React app with Leaflet so users see the actual route, not just a pin.

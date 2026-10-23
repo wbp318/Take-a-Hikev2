@@ -5,6 +5,7 @@ const sequelize = require('sequelize');
 const { query } = require('express');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const passport = require('passport');
 
 const { BirdList } = require("./database/models/birdList.js")
@@ -134,6 +135,16 @@ app.get("/api/trails/geojson", (req, res) => {
       console.error("ERROR: ", err);
       res.sendStatus(500);
     });
+});
+
+// GET per-trail enrichment produced by gis/pyqgis/enrich_trails.py
+// (OSM trail length, elevation gain, eBird diversity score)
+app.get("/api/trails/enrichment", (req, res) => {
+  const file = path.join(__dirname, "..", "gis", "data", "trail_enrichment.json");
+  fs.readFile(file, "utf8", (err, data) => {
+    if (err) return res.json({});
+    res.type("json").send(data);
+  });
 });
 
 //////////////////////////////////////// Cloudinary routes //////////////////////////////////////
