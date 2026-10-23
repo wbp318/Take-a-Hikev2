@@ -1,6 +1,6 @@
 {
   "name": "take-a-hike",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Trail hiking app for Louisiana",
   "main": "webpack.config.js",
   "scripts": {
