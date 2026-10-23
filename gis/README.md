@@ -74,7 +74,9 @@ make it the default view:
 
 ```
 C:\OSGeo4Win\python-qgis-ltr.bat gis\pyqgisdd_place_layer.py gis\data\east_carroll_parish.geojson
-``` Note the search uses the geocoded bounding box, so results near parish borders can spill into neighbours.
+```
+
+Note the search uses the geocoded bounding box, so results near parish borders can spill into neighbours.
 
 ## 5. QGIS plugin
 
