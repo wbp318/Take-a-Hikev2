@@ -5,3 +5,4 @@ dist
 gis/data/*.gpkg
 gis/data/*.qgz
 gis/data/osm_lines_cache.json
+symbology-style.db
