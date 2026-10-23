@@ -68,7 +68,13 @@ python gis/find_trails.py "East Carroll Parish" --state Louisiana
 python gis/find_trails.py "Caddo Parish" --no-tracks     # drop farm/levee tracks
 ```
 
-Output is `gis/data/<place>.geojson` (drag into QGIS) plus a printed table. Note the search uses the geocoded bounding box, so results near parish borders can spill into neighbours.
+Output is `gis/data/<place>.geojson` (drag into QGIS) plus a printed table. To add it to the
+TrailFeathers project with styling (named ways red, paths orange, tracks grey, sites green) and
+make it the default view:
+
+```
+C:\OSGeo4Win\python-qgis-ltr.bat gis\pyqgisdd_place_layer.py gis\data\east_carroll_parish.geojson
+``` Note the search uses the geocoded bounding box, so results near parish borders can spill into neighbours.
 
 ## 5. QGIS plugin
 

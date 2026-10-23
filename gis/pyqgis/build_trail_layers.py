@@ -23,6 +23,7 @@ from qgis.core import (
     QgsCoordinateTransform, QgsVectorFileWriter, QgsCategorizedSymbolRenderer,
     QgsRendererCategory, QgsMarkerSymbol, QgsFillSymbol,
     QgsPalLayerSettings, QgsVectorLayerSimpleLabeling, QgsTextFormat,
+    QgsReferencedRectangle,
 )
 from qgis.PyQt.QtCore import QMetaType
 from qgis.PyQt.QtGui import QFont
@@ -198,6 +199,11 @@ def main():
             project.addMapLayer(lyr)
 
         project.setTitle("TrailFeathers")
+        # Default view: trail extent (in project CRS) so the project opens on the map
+        ext = trails.extent()
+        ext = QgsCoordinateTransform(WGS84, WEBMERC, project).transformBoundingBox(ext)
+        ext.grow(ext.width() * 0.1)
+        project.viewSettings().setDefaultViewExtent(QgsReferencedRectangle(ext, WEBMERC))
         project.write(PROJECT)
         print("Wrote %s\nWrote %s" % (GPKG, PROJECT))
 
