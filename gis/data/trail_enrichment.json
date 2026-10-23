@@ -1,0 +1,248 @@
+{
+  "288242": {
+    "name": "Sam Houston Jones State Park",
+    "osm_segments": 58,
+    "osm_length_km": 24.61,
+    "osm_surface_types": [
+      "footway",
+      "path",
+      "track"
+    ],
+    "trailhead_elev_m": 18.0,
+    "elev_min_m": 0.0,
+    "elev_max_m": 21.0,
+    "elev_gain_m": 86.0,
+    "elev_loss_m": 79.0,
+    "profile_segment_m": 5719.8,
+    "profile_samples": 58,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "275742": {
+    "name": "Westside",
+    "osm_segments": 25,
+    "osm_length_km": 11.27,
+    "osm_surface_types": [
+      "track"
+    ],
+    "trailhead_elev_m": 62.0,
+    "elev_min_m": 60.0,
+    "elev_max_m": 70.0,
+    "elev_gain_m": 13.0,
+    "elev_loss_m": 6.0,
+    "profile_segment_m": 1441.9,
+    "profile_samples": 15,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "288245": {
+    "name": "Chicot State Park",
+    "osm_segments": 106,
+    "osm_length_km": 28.82,
+    "osm_surface_types": [
+      "footway",
+      "path",
+      "track"
+    ],
+    "trailhead_elev_m": 41.0,
+    "elev_min_m": 26.0,
+    "elev_max_m": 44.0,
+    "elev_gain_m": 44.0,
+    "elev_loss_m": 45.0,
+    "profile_segment_m": 2437.7,
+    "profile_samples": 25,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "282461": {
+    "name": "Martin Dies, Jr. State Park",
+    "osm_segments": 12,
+    "osm_length_km": 13.01,
+    "osm_surface_types": [
+      "path",
+      "track"
+    ],
+    "trailhead_elev_m": 40.0,
+    "elev_min_m": 29.0,
+    "elev_max_m": 52.0,
+    "elev_gain_m": 55.0,
+    "elev_loss_m": 59.0,
+    "profile_segment_m": 2536.2,
+    "profile_samples": 26,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "288247": {
+    "name": "Acadiana Park",
+    "osm_segments": 228,
+    "osm_length_km": 51.39,
+    "osm_surface_types": [
+      "cycleway",
+      "footway",
+      "path",
+      "track"
+    ],
+    "trailhead_elev_m": 14.0,
+    "elev_min_m": 10.0,
+    "elev_max_m": 26.0,
+    "elev_gain_m": 33.0,
+    "elev_loss_m": 33.0,
+    "profile_segment_m": 3509.8,
+    "profile_samples": 36,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "288239": {
+    "name": "Wild Azalea Trail",
+    "osm_segments": 19,
+    "osm_length_km": 9.48,
+    "osm_surface_types": [
+      "footway",
+      "path"
+    ],
+    "trailhead_elev_m": 36.0,
+    "elev_min_m": 42.0,
+    "elev_max_m": 82.0,
+    "elev_gain_m": 108.0,
+    "elev_loss_m": 129.0,
+    "profile_segment_m": 7436.7,
+    "profile_samples": 75,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "280921": {
+    "name": "Wild Azalea Trail",
+    "osm_segments": 6,
+    "osm_length_km": 11.95,
+    "osm_surface_types": [
+      "path"
+    ],
+    "trailhead_elev_m": 65.0,
+    "elev_min_m": 49.0,
+    "elev_max_m": 93.0,
+    "elev_gain_m": 131.0,
+    "elev_loss_m": 150.0,
+    "profile_segment_m": 6579.0,
+    "profile_samples": 66,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "282544": {
+    "name": "East Boat Ramp Trail",
+    "osm_segments": 5,
+    "osm_length_km": 12.72,
+    "osm_surface_types": [
+      "path"
+    ],
+    "trailhead_elev_m": 73.0,
+    "elev_min_m": 52.0,
+    "elev_max_m": 81.0,
+    "elev_gain_m": 70.0,
+    "elev_loss_m": 85.0,
+    "profile_segment_m": 4599.0,
+    "profile_samples": 46,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "280838": {
+    "name": "Kincaid Lake",
+    "osm_segments": 2,
+    "osm_length_km": 0.63,
+    "osm_surface_types": [
+      "path"
+    ],
+    "trailhead_elev_m": 61.0,
+    "elev_min_m": 54.0,
+    "elev_max_m": 65.0,
+    "elev_gain_m": 17.0,
+    "elev_loss_m": 17.0,
+    "profile_segment_m": 620.5,
+    "profile_samples": 7,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "284992": {
+    "name": "Kincaid Lakeshore Trail",
+    "osm_segments": 13,
+    "osm_length_km": 0.72,
+    "osm_surface_types": [
+      "footway"
+    ],
+    "trailhead_elev_m": 62.0,
+    "elev_min_m": 27.0,
+    "elev_max_m": 27.0,
+    "elev_gain_m": 0,
+    "elev_loss_m": 0,
+    "profile_segment_m": 244.4,
+    "profile_samples": 3,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "275176": {
+    "name": "Caroline Dormon Trail",
+    "osm_segments": 12,
+    "osm_length_km": 20.75,
+    "osm_surface_types": [
+      "footway",
+      "path",
+      "track"
+    ],
+    "trailhead_elev_m": 69.0,
+    "elev_min_m": 52.0,
+    "elev_max_m": 98.0,
+    "elev_gain_m": 166.0,
+    "elev_loss_m": 147.0,
+    "profile_segment_m": 7508.3,
+    "profile_samples": 76,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "284909": {
+    "name": "Cypress Bend Resort",
+    "osm_segments": 7,
+    "osm_length_km": 3.72,
+    "osm_surface_types": [
+      "footway",
+      "track"
+    ],
+    "trailhead_elev_m": 79.0,
+    "elev_min_m": 73.0,
+    "elev_max_m": 90.0,
+    "elev_gain_m": 8.0,
+    "elev_loss_m": 25.0,
+    "profile_segment_m": 1413.0,
+    "profile_samples": 15,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  },
+  "287490": {
+    "name": "Lake Fausse Pointe Trail System",
+    "osm_segments": 35,
+    "osm_length_km": 0.9,
+    "osm_surface_types": [
+      "footway"
+    ],
+    "trailhead_elev_m": 0.0,
+    "elev_min_m": 6.0,
+    "elev_max_m": 7.0,
+    "elev_gain_m": 1.0,
+    "elev_loss_m": 0,
+    "profile_segment_m": 55.1,
+    "profile_samples": 2,
+    "bird_hotspots": null,
+    "bird_species_max": null,
+    "bird_score": null
+  }
+}
