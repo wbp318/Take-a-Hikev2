@@ -1,0 +1,39 @@
+# Normalize line endings: LF in the repo, native on checkout
+* text=auto eol=lf
+
+# Windows-only files keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Source
+*.js    text
+*.jsx   text
+*.json  text
+*.py    text diff=python
+*.md    text diff=markdown
+*.css   text
+*.html  text
+*.txt   text
+*.yml   text
+*.yaml  text
+*.geojson text
+
+# Binary / generated
+*.gpkg  binary
+*.qgz   binary
+*.sqlite binary
+*.db    binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.zip   binary
+*.xlsx  binary
+
+# Keep large sample data out of GitHub language stats and diffs
+gis/data/*.geojson      linguist-generated=true -diff
+gis/data/*.json         linguist-generated=true
+server/database/data/*.json linguist-generated=true
+package-lock.json       linguist-generated=true -diff
