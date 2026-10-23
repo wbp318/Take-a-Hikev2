@@ -2,6 +2,84 @@
 
 Trail Feathers is an app for hiking and bird watching anywhere in the world! Use it to explore hiking and biking trails, organize lists of items to bring with you, and search for any North American bird.
 
+> **This fork** (wbp318) adds a QGIS / PyQGIS layer on top of the original Team ACE app. Everything below in this section is new; the original walkthrough and tech notes follow further down. Latest release: [v1.2.0](https://github.com/wbp318/Take-a-Hikev2/releases/latest).
+
+## What's new in this fork
+
+| Area | Added |
+|---|---|
+| **GIS toolkit** (`gis/`) | Headless PyQGIS scripts that turn the trail table into a GeoPackage and a ready-to-open QGIS project: trailheads styled by difficulty, 2 km buffers, real OpenStreetMap trail linework, elevation profiles, eBird sightings and a bird-diversity score. Full docs and per-script diagrams in [`gis/README.md`](gis/README.md). |
+| **Parish / county trail finder** | `gis/find_trails.py` searches OSM for trails, parks and nature areas in any US county or parish (no QGIS needed), and `gis/pyqgis/add_place_layer.py` drops the result into the project as styled, labelled layers. Sample: East Carroll Parish, LA. |
+| **QGIS plugin** | `gis/qgis_plugin/trailfeathers` loads trails straight from the running server and fetches recent eBird observations around a selected trail. Zip attached to each release. |
+| **API** | `GET /api/trails/geojson` and `GET /api/trails/enrichment` |
+| **UI** | Trail profile page shows mapped trail length, elevation gain and bird score. |
+| **Security** | RapidAPI key moved from source into `RAPIDAPI_KEY` (see `.env.example`). |
+| **Releases** | First tagged releases of the project: v1.1.0 (GIS integration), v1.2.0 (trail-name labels, diagrams). |
+
+### Architecture
+
+```mermaid
+flowchart LR
+    subgraph app["TrailFeathers app"]
+        R[React client] <--> X[Express server]
+        X <--> DB[(MySQL)]
+        X --> GEO["/api/trails/geojson"]
+        X --> ENR["/api/trails/enrichment"]
+    end
+
+    subgraph gis["gis/ toolkit (Python / PyQGIS)"]
+        EXP[export_trails.js] --> GJ[trails.geojson]
+        GJ --> BUILD[build_trail_layers.py]
+        GJ --> ENRICH[enrich_trails.py]
+        FIND[find_trails.py] --> PJ[&lt;place&gt;.geojson] --> PLACE[add_place_layer.py]
+        BUILD & ENRICH & PLACE --> GPKG[(trailfeathers.gpkg)]
+        BUILD & ENRICH & PLACE --> QGZ[trailfeathers.qgz]
+        ENRICH --> EJ[trail_enrichment.json]
+    end
+
+    subgraph ext["External data"]
+        OSM[(OpenStreetMap<br/>Overpass + Nominatim)]
+        DEM[Open-Meteo DEM]
+        EB[eBird API]
+    end
+
+    DB -- "--db" --> EXP
+    OSM --> ENRICH & FIND
+    DEM --> ENRICH
+    EB -. optional .-> BUILD & ENRICH
+    EJ --> ENR
+    QGZ ==> QGIS[[QGIS desktop]]
+    GEO --> PLUGIN[[QGIS plugin]]
+    EB -. optional .-> PLUGIN
+```
+
+### Quick start (GIS)
+
+```mermaid
+flowchart LR
+    A["node gis/export_trails.js"] --> B["python-qgis-ltr.bat gis/pyqgis/build_trail_layers.py"]
+    B --> C["python-qgis-ltr.bat gis/pyqgis/enrich_trails.py"]
+    C --> D["open gis/data/trailfeathers.qgz in QGIS"]
+    E["python gis/find_trails.py 'East Carroll Parish'"] --> F["python-qgis-ltr.bat gis/pyqgis/add_place_layer.py gis/data/east_carroll_parish.geojson"] --> D
+```
+
+Requires QGIS 3.34+ (tested on 3.40 LTR via OSGeo4W, Windows). Set `EBIRD_API_KEY` for the bird layers.
+
+### What ends up in QGIS
+
+```mermaid
+flowchart TD
+    QGZ[trailfeathers.qgz] --> OSM[OpenStreetMap basemap]
+    QGZ --> T[trails<br/>points, categorized by difficulty]
+    QGZ --> B[trail_buffers<br/>2 km polygons]
+    QGZ --> L[trail_lines<br/>OSM ways near each trailhead]
+    QGZ --> S[elevation_samples<br/>every ~100 m along the longest segment]
+    QGZ -. EBIRD_API_KEY .-> E[ebird_sightings]
+    QGZ --> P["&lt;place&gt;_named_trails / _trail_names / _paths / _tracks / _sites<br/>(from find_trails.py)"]
+```
+
+---
+
 # Team ACE
 
 Product Owner:
